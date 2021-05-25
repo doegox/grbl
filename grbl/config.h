@@ -34,7 +34,7 @@
 // NOTE: OEMs can avoid the need to maintain/update the defaults.h and cpu_map.h files and use only
 // one configuration file by placing their specific defaults and pin map at the bottom of this file.
 // If doing so, simply comment out these two defines and see instructions below.
-#define DEFAULTS_GENERIC
+//#define DEFAULTS_GENERIC
 #define CPU_MAP_ATMEGA328P // Arduino Uno CPU
 
 // Serial baud rate
@@ -102,12 +102,12 @@
 // on separate pin, but homed in one cycle. Also, it should be noted that the function of hard limits
 // will not be affected by pin sharing.
 // NOTE: Defaults are set for a traditional 3-axis CNC machine. Z-axis first to clear, followed by X & Y.
-#define HOMING_CYCLE_0 (1<<Z_AXIS)                // REQUIRED: First move Z to clear workspace.
-#define HOMING_CYCLE_1 ((1<<X_AXIS)|(1<<Y_AXIS))  // OPTIONAL: Then move X,Y at the same time.
+// #define HOMING_CYCLE_0 (1<<Z_AXIS)                // REQUIRED: First move Z to clear workspace.
+// #define HOMING_CYCLE_1 ((1<<X_AXIS)|(1<<Y_AXIS))  // OPTIONAL: Then move X,Y at the same time.
 // #define HOMING_CYCLE_2                         // OPTIONAL: Uncomment and add axes mask to enable
 
 // NOTE: The following are two examples to setup homing for 2-axis machines.
-// #define HOMING_CYCLE_0 ((1<<X_AXIS)|(1<<Y_AXIS))  // NOT COMPATIBLE WITH COREXY: Homes both X-Y in one cycle. 
+#define HOMING_CYCLE_0 ((1<<X_AXIS)|(1<<Y_AXIS))  // NOT COMPATIBLE WITH COREXY: Homes both X-Y in one cycle.
 
 // #define HOMING_CYCLE_0 (1<<X_AXIS)  // COREXY COMPATIBLE: First home X
 // #define HOMING_CYCLE_1 (1<<Y_AXIS)  // COREXY COMPATIBLE: Then home Y
@@ -152,7 +152,7 @@
 // alarm out and force the user to manually disengage the limit switch. Otherwise, if you have one
 // limit switch for each axis, don't enable this option. By keeping it disabled, you can perform a
 // homing cycle while on the limit switch and not have to move the machine off of it.
-// #define LIMITS_TWO_SWITCHES_ON_AXES
+#define LIMITS_TWO_SWITCHES_ON_AXES
 
 // Allows GRBL to track and report gcode line numbers.  Enabling this means that the planning buffer
 // goes from 16 to 15 to make room for the additional line number data in the plan_block_t struct
@@ -194,6 +194,7 @@
 // inverting only two control pins, the safety door and reset. See cpu_map.h for other bit definitions.
 // #define INVERT_CONTROL_PIN_MASK CONTROL_MASK // Default disabled. Uncomment to disable.
 // #define INVERT_CONTROL_PIN_MASK ((1<<CONTROL_SAFETY_DOOR_BIT)|(1<<CONTROL_RESET_BIT)) // Default disabled.
+#define INVERT_CONTROL_PIN_MASK (1<<CONTROL_FEED_HOLD_BIT)
 
 // Inverts select limit pin states based on the following mask. This effects all limit pin functions,
 // such as hard limits and homing. However, this is different from overall invert limits setting.
@@ -201,7 +202,7 @@
 // will be applied to all of them. This is useful when a user has a mixed set of limit pins with both
 // normally-open(NO) and normally-closed(NC) switches installed on their machine.
 // NOTE: PLEASE DO NOT USE THIS, unless you have a situation that needs it.
-// #define INVERT_LIMIT_PIN_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)) // Default disabled. Uncomment to enable.
+#define INVERT_LIMIT_PIN_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)) // Default disabled. Uncomment to enable.
 
 // Inverts the spindle enable pin from low-disabled/high-enabled to low-enabled/high-disabled. Useful
 // for some pre-built electronic boards.
@@ -687,6 +688,40 @@
 // Paste CPU_MAP definitions here.
 
 // Paste default settings definitions here.
+#define DEFAULT_X_STEPS_PER_MM 71.030
+#define DEFAULT_Y_STEPS_PER_MM 72.720
+#define DEFAULT_Z_STEPS_PER_MM 250.0
+#define DEFAULT_X_MAX_RATE 5000.0 // mm/min
+#define DEFAULT_Y_MAX_RATE 5000.0 // mm/min
+#define DEFAULT_Z_MAX_RATE 5000.0 // mm/min
+#define DEFAULT_X_ACCELERATION (150.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+#define DEFAULT_Y_ACCELERATION (150.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+#define DEFAULT_Z_ACCELERATION (150.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+#define DEFAULT_X_MAX_TRAVEL 1200.0 // mm NOTE: Must be a positive value.
+#define DEFAULT_Y_MAX_TRAVEL 600.0 // mm NOTE: Must be a positive value.
+#define DEFAULT_Z_MAX_TRAVEL 200.0 // mm NOTE: Must be a positive value.
+#define DEFAULT_SPINDLE_RPM_MAX 1000.0 // rpm
+#define DEFAULT_SPINDLE_RPM_MIN 0.0 // rpm
+#define DEFAULT_STEP_PULSE_MICROSECONDS 10
+#define DEFAULT_STEPPING_INVERT_MASK 0
+#define DEFAULT_DIRECTION_INVERT_MASK 0
+#define DEFAULT_STEPPER_IDLE_LOCK_TIME 255 // msec (0-254, 255 keeps steppers enabled)
+#define DEFAULT_STATUS_REPORT_MASK 1 // MPos enabled
+#define DEFAULT_JUNCTION_DEVIATION 0.02 // mm
+#define DEFAULT_ARC_TOLERANCE 0.002 // mm
+#define DEFAULT_REPORT_INCHES 0 // false
+#define DEFAULT_INVERT_ST_ENABLE 1 // true
+#define DEFAULT_INVERT_LIMIT_PINS 0 // false
+#define DEFAULT_SOFT_LIMIT_ENABLE 0 // false
+#define DEFAULT_HARD_LIMIT_ENABLE 1  // true
+#define DEFAULT_INVERT_PROBE_PIN 0 // false
+#define DEFAULT_LASER_MODE 1 // true
+#define DEFAULT_HOMING_ENABLE 1  // true
+#define DEFAULT_HOMING_DIR_MASK 1 // homing towards left/rear
+#define DEFAULT_HOMING_FEED_RATE 100.0 // mm/min
+#define DEFAULT_HOMING_SEEK_RATE 3000.0 // mm/min
+#define DEFAULT_HOMING_DEBOUNCE_DELAY 250 // msec (0-65k)
+#define DEFAULT_HOMING_PULLOFF 4.0 // mm
 
 
 #endif
