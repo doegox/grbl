@@ -34,7 +34,7 @@
 // NOTE: OEMs can avoid the need to maintain/update the defaults.h and cpu_map.h files and use only
 // one configuration file by placing their specific defaults and pin map at the bottom of this file.
 // If doing so, simply comment out these two defines and see instructions below.
-#define DEFAULTS_GENERIC
+//#define DEFAULTS_GENERIC
 #define CPU_MAP_ATMEGA328P // Arduino Uno CPU
 
 // Serial baud rate
@@ -687,6 +687,74 @@
 // Paste CPU_MAP definitions here.
 
 // Paste default settings definitions here.
+//$100
+#define DEFAULT_X_STEPS_PER_MM 1600.0
+//$101
+#define DEFAULT_Y_STEPS_PER_MM 1600.0
+//$102
+#define DEFAULT_Z_STEPS_PER_MM 1600.0
+//$110
+#define DEFAULT_X_MAX_RATE 1400.0 // mm/min
+//$111
+#define DEFAULT_Y_MAX_RATE 1400.0 // mm/min
+//$112
+#define DEFAULT_Z_MAX_RATE 1400.0 // mm/min
+//$120
+#define DEFAULT_X_ACCELERATION (60.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+//$121
+#define DEFAULT_Y_ACCELERATION (60.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+//$122
+#define DEFAULT_Z_ACCELERATION (60.0*60*60) // 10*60*60 mm/min^2 = 10 mm/sec^2
+//$130
+#define DEFAULT_X_MAX_TRAVEL 153.0 // mm NOTE: Must be a positive value.
+//$131
+#define DEFAULT_Y_MAX_TRAVEL 97.0 // mm NOTE: Must be a positive value.
+//$132
+#define DEFAULT_Z_MAX_TRAVEL 37.0 // mm NOTE: Must be a positive value.
+//$30
+#define DEFAULT_SPINDLE_RPM_MAX 1000.0 // rpm
+//$31
+#define DEFAULT_SPINDLE_RPM_MIN 0.0 // rpm
+//$0
+#define DEFAULT_STEP_PULSE_MICROSECONDS 10
+//$2
+#define DEFAULT_STEPPING_INVERT_MASK 0
+//$3
+#define DEFAULT_DIRECTION_INVERT_MASK 5 // X & Z inv
+//$1
+#define DEFAULT_STEPPER_IDLE_LOCK_TIME 25 // msec (0-254, 255 keeps steppers enabled)
+//$10
+#define DEFAULT_STATUS_REPORT_MASK 0 // WPos enabled
+//$11
+#define DEFAULT_JUNCTION_DEVIATION 0.01 // mm
+//$12
+#define DEFAULT_ARC_TOLERANCE 0.002 // mm
+//$13
+#define DEFAULT_REPORT_INCHES 0 // false -> mm
+//$4
+#define DEFAULT_INVERT_ST_ENABLE 0 // false
+//$5
+#define DEFAULT_INVERT_LIMIT_PINS 0 // false
+//$20
+#define DEFAULT_SOFT_LIMIT_ENABLE 1 // true
+//$23
+#define DEFAULT_HARD_LIMIT_ENABLE 1  // true
+//$6
+#define DEFAULT_INVERT_PROBE_PIN 0 // false
+//$32
+#define DEFAULT_LASER_MODE 1 // true
+//$22
+#define DEFAULT_HOMING_ENABLE 1  // true
+//$23
+#define DEFAULT_HOMING_DIR_MASK 3 // X-Y-Z+ : endstops at X:left, Y:back and Z:top
+//$24
+#define DEFAULT_HOMING_FEED_RATE 25.0 // mm/min
+//$25
+#define DEFAULT_HOMING_SEEK_RATE 1000.0 // mm/min
+//$26
+#define DEFAULT_HOMING_DEBOUNCE_DELAY 250 // msec (0-65k)
+//$27
+#define DEFAULT_HOMING_PULLOFF 2.0 // mm
 
 
 #endif
